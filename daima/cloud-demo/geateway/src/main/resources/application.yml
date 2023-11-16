@@ -1,0 +1,37 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      server-addr: localhost:8848 #nacos地址
+    gateway:
+      routes:
+        - id: user-service #路由标识，必须唯一
+          uri: lb://userservice #路由断言。判断请求是否合规则
+          predicates:
+            - Path=/user/** #路径断言，判断路径是否是以u'se'r'开头，如果是则符合
+#          filters: #设置过滤工厂，只对设置的路由请求有效，给user请求添加请求头
+#            - AddRequestHeader=Truth,Itcast is freaking aowsome!
+        - id: order-server  #路由标识，必须唯一
+          uri: lb://orderserver  #路由断言。判断请求是否合规则
+          predicates:
+            - Path=/order/**  #路径断言，判断路径是否是以order开头，如果是则符合
+            - Before=2031-04-13T15:14:47.433+08:00[Asia/Shanghai] #在2027年过后才能访问
+      default-filters: #全局过滤器，对所有路由生效全部由路由请求网关请求请求的消息都会加请求头
+        - AddRequestHeader=Truth,Itcast is freaking aowsome!
+      globalcors: #全局的跨域处理
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: #允许那些网站的跨域请求
+              - "http://localhost:8090"
+              - "http://www.leyou.com"
+            allowedMethods: #允许的跨域ajax的请求方式
+              - "GET"
+              - "POST"
+              - "DELETE"
+            allowed-headers: "*" #允许在请求头中携带的头信
+            allowCredentials: true #是否携带cookie
+            maxAge: 360000 #设置有效时间

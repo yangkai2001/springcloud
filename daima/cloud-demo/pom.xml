@@ -11,6 +11,8 @@
         <module>user-service</module>
         <module>order-service</module>
         <module>eureka-server</module>
+        <module>feign-server</module>
+        <module>geateway</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -11,10 +11,10 @@ spring:
   cloud:
     nacos:
       server-addr: localhost:8848 #nacos服务地址
-      discovery:
-        cluster-name: CQ #集群名称
-        namespace:    #没有默认为pulic环境空间 dev环境空间的标识id3a6a4b07-6af3-47f7-b81a-e147646d7e67 #dev 环境
-        ephemeral: false #是否为临时事列 服务停止了，不会被nacos系统踢出，如果为临时事件停止了会被踢出
+#      discovery:
+#        cluster-name: CQ #集群名称
+#        namespace:    #没有默认为pulic环境空间 dev环境空间的标识id3a6a4b07-6af3-47f7-b81a-e147646d7e67 #dev 环境
+#        ephemeral: false #是否为临时事列 服务停止了，不会被nacos系统踢出，如果为临时事件停止了会被踢出
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
@@ -36,5 +36,8 @@ userservice:
 #  eager-load:
 #    enabled: true  #开启饥饿加载
 #    clients: userserver #指定饥饿加载的服务名称
-
-
+feign:
+  httpclient:
+    enabled: true #支持httpclient的开关
+    max-connections: 200 #最大连接数
+    max-connections-per-route: 50 #单个路径的最大连接数

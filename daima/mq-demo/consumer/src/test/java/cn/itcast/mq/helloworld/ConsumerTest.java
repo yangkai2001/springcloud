@@ -1,8 +1,11 @@
 package cn.itcast.mq.helloworld;
 
 import com.rabbitmq.client.*;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeoutException;
 
 public class ConsumerTest {
@@ -38,4 +41,6 @@ public class ConsumerTest {
         });
         System.out.println("等待接收消息。。。。");
     }
+
+
 }

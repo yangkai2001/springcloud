@@ -8,3 +8,6 @@ spring:
     username: root #用户名称
     password: root #用户密码
     virtual-host: / #虚拟主机
+    #listener:
+     # simple:
+      #  prefetch: 1 #每次只能获取一条消息，处理完成才能获取下一个消息
